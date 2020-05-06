@@ -8,5 +8,5 @@ urlpatterns = [
     # include urls.py from tiny application
     path('tiny/', include('tiny.urls')),
     # add URL maps to redirect the base URL to tiny application
-    path('', RedirectView.as_view(url='catalog/', permanent=True)),
+    path('', RedirectView.as_view(url='tiny/', permanent=True)),
 ]
