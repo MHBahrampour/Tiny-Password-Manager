@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from tiny.models import PasswordInstance
@@ -15,6 +17,29 @@ def index(request):
         'wellcome': 'Wellcome "{}" .'.format(username),
     }
     return render(request, 'index.html', context=context)
+
+from tiny.forms import PasswordCreateForm
+@login_required
+def PasswordCreate(request):
+    new_password = PasswordInstance()
+    form = PasswordCreateForm(request.POST)
+
+    if form.is_valid():
+        new_password.title = form.cleaned_data["title"]
+        new_password.description = form.cleaned_data["description"]
+        new_password.password = form.cleaned_data["password"]
+
+        new_password.user = request.user.get_username()
+
+        new_password.save()
+        return HttpResponseRedirect(reverse('index'))
+
+    context = {
+        'form': form,
+        'new_password': new_password,
+    }
+
+    return render(request, 'tiny/pass_create.html', context)
 
 def signup(request):
     if request.method == 'POST':

@@ -19,7 +19,7 @@
           <li><a href="">About</a></li>
           <hr>
           <li><a href="">Passwords</a></li>
-          <li><a href="">Create Password</a></li>
+          <li><a href="{% url 'pass_create' %}">Create Password</a></li>
           <li><a href="">Delete Password</a></li>
           <hr>
           {% if user.is_authenticated %}
