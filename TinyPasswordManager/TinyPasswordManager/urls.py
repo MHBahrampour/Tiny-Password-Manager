@@ -16,7 +16,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='tiny/', permanent=True)),
 
     # for signin
-    path('signin/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
     # for signup
     url(r'^signup/$', core_views.signup, name='signup'),
