@@ -41,6 +41,15 @@ def PasswordCreate(request):
 
     return render(request, 'tiny/pass_create.html', context)
 
+def PasswordShow(request):
+    username = request.user.get_username()
+    user_passwords = PasswordInstance.objects.filter(user__exact=username)
+
+    context={
+        'user_passwords' : user_passwords,
+    }
+    return render(request, 'tiny/pass_show.html', context=context)
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
