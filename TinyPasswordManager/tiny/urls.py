@@ -10,4 +10,7 @@ urlpatterns = [
 
     # show all user passwords
     path('pass/show/', views.PasswordShow, name='pass_show'),
+
+    # show password detail
+    path('pass/<int:pk>', views.PasswordDetail, name='pass_detail'),
 ]

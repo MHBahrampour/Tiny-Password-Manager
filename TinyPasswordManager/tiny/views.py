@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login, authenticate
@@ -41,6 +41,7 @@ def PasswordCreate(request):
 
     return render(request, 'tiny/pass_create.html', context)
 
+@login_required
 def PasswordShow(request):
     username = request.user.get_username()
     user_passwords = PasswordInstance.objects.filter(user__exact=username)
@@ -49,6 +50,19 @@ def PasswordShow(request):
         'user_passwords' : user_passwords,
     }
     return render(request, 'tiny/pass_show.html', context=context)
+
+@login_required
+def PasswordDetail(request, pk):
+    the_password = get_object_or_404(PasswordInstance, pk=pk)
+
+    context={
+        'the_password' : the_password,
+    }
+    return render(request, 'tiny/pass_detail.html', context=context)
+
+@login_required
+def PasswordDelete(request):
+    pass
 
 def signup(request):
     if request.method == 'POST':

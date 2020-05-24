@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 class PasswordInstance(models.Model):
     # username
@@ -19,4 +20,4 @@ class PasswordInstance(models.Model):
 
     def get_absolute_url(self):
         """Returns the url to access a particular instance of the model."""
-        return reverse('pass-detail', args=[str(self.id)])
+        return reverse('pass_detail', args=[str(self.id)])
