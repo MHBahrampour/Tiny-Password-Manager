@@ -76,6 +76,28 @@ def PasswordDelete(request, pk):
 
     return render(request, 'tiny/pass_delete.html', context=context)
 
+@login_required
+def PasswordEdit(request, pk):
+    edit_password = get_object_or_404(PasswordInstance, pk=pk)
+    form = PasswordCreateForm(request.POST)
+
+    if form.is_valid():
+        edit_password.title = form.cleaned_data["title"]
+        edit_password.description = form.cleaned_data["description"]
+        edit_password.password = form.cleaned_data["password"]
+
+        edit_password.user = request.user.get_username()
+
+        edit_password.save()
+        return HttpResponseRedirect(reverse('index'))
+
+    context = {
+        'form': form,
+        'edit_password': edit_password,
+    }
+
+    return render(request, 'tiny/pass_edit.html', context)
+
 def signup(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

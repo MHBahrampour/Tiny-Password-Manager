@@ -14,5 +14,9 @@ urlpatterns = [
     # show password detail
     path('pass/<int:pk>', views.PasswordDetail, name='pass_detail'),
 
+    # delete the password
     path('pass/<int:pk>/delete/', views.PasswordDelete, name='pass_delete'),
+
+    # edit the password
+    path('pass/<int:pk>/edit/', views.PasswordEdit, name='pass_edit'),
 ]
