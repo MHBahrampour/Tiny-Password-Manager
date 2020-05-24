@@ -5,6 +5,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from tiny.models import PasswordInstance
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import DeleteView
 
 @login_required
 def index(request):
@@ -58,11 +59,22 @@ def PasswordDetail(request, pk):
     context={
         'the_password' : the_password,
     }
-    return render(request, 'tiny/pass_detail.html', context=context)
+    return render(request, 'tiny/pass_detail.html', context=context)    
 
 @login_required
-def PasswordDelete(request):
-    pass
+def PasswordDelete(request, pk):
+    the_password = get_object_or_404(PasswordInstance, pk=pk)
+    TF = the_password.delete()
+    if (TF):
+        context={
+            'message' : "Password DELETED."
+        }
+    else:
+        context={
+            'message' : "Password NOT DELETED."
+        }
+
+    return render(request, 'tiny/pass_delete.html', context=context)
 
 def signup(request):
     if request.method == 'POST':

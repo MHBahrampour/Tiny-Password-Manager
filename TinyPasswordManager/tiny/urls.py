@@ -13,4 +13,6 @@ urlpatterns = [
 
     # show password detail
     path('pass/<int:pk>', views.PasswordDetail, name='pass_detail'),
+
+    path('pass/<int:pk>/delete/', views.PasswordDelete, name='pass_delete'),
 ]
