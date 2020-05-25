@@ -2,13 +2,16 @@ from django.db import models
 from django.urls import reverse
 
 class PasswordInstance(models.Model):
-    # username
+    # user
     user = models.CharField(max_length=200)
     # password title
     title = models.CharField(max_length=200)
     # password description
     description = models.TextField(max_length=2000)
 
+    # username
+    username = models.CharField(max_length=32, blank=True)
+    
     # password 
     password = models.CharField(max_length=32, blank=True)
     # or
