@@ -7,7 +7,13 @@
         <p><strong>username: </strong>{{ the_password.username }}</p>
         <p><strong>Password: </strong>{{ the_password.password }}</p>
         <p><strong>Description: </strong>{{ the_password.description }}</p>
-        <input type="submit" value="Delete">
-        <input type="submit" value="Update">
+        <div style="margin-left:20px; margin-top:20px">
+            <form action="/tiny/pass/{{ id }}/edit">
+                <input type="submit" value="Update" />
+            </form>
+            <form action="/tiny/pass/{{ id }}/delete">
+                <input type="submit" value="Delete" />
+            </form>
+        </div>
     </div>
 {% endblock %}

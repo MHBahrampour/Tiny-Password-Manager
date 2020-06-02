@@ -28,6 +28,7 @@ def PasswordCreate(request):
     if form.is_valid():
         new_password.title = form.cleaned_data["title"]
         new_password.description = form.cleaned_data["description"]
+        new_password.username = form.cleaned_data["username"]
         new_password.password = form.cleaned_data["password"]
 
         new_password.user = request.user.get_username()
@@ -58,6 +59,7 @@ def PasswordDetail(request, pk):
 
     context={
         'the_password' : the_password,
+        'id' : pk,
     }
     return render(request, 'tiny/pass_detail.html', context=context)    
 
