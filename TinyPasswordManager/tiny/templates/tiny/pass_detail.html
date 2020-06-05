@@ -1,19 +1,73 @@
-{% extends "base_generic.html" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            .detail {
+                background-color: #333;
+                width: 30%;
+                border-radius: 15px;
+                color: white;
+                font-style:normal;
+            }
 
-{% block content %}
-    <h1> {{ the_password.title }} Detail</h1>
+            .delete {
+                width: 75%;
+                color:black;
+                font-weight: 500;
+                font-size: 15px;
+                letter-spacing: 5px;
+                background: linear-gradient(to right, rgb(57, 170, 136), rgb(82, 127, 185));
+                padding: 10px 20px;
+                border-radius: 50px;
+                box-sizing: border-box;
+                border: 2px solid rgba(0, 0, 0, 0.02);
+                margin-bottom: 50px;
+                margin-left: 40px;
+                text-align: center;
+                margin-bottom: 27px;
+                margin-left: 20px;
+            }      
+            
+            
+            .update{
+                width: 75%;
+                color: black;
+                font-weight: 500;
+                font-size: 15px;
+                letter-spacing: 5px;
+                background: linear-gradient(to right, rgb(57, 170, 136), rgb(82, 127, 185));
+                padding: 10px 20px;
+                border-radius: 50px;
+                box-sizing: border-box;
+                border: 2px solid rgba(0, 0, 0, 0.02);
+                margin-bottom: 50px;
+                margin-left: 40px;
+                text-align: center;
+                margin-bottom: 27px;
+                margin-left: 20px;          
+            }
+        </style>
+    </head>
 
-    <div style="margin-left:20px; margin-top:20px">
-        <p><strong>username: </strong>{{ the_password.username }}</p>
-        <p><strong>Password: </strong>{{ the_password.password }}</p>
-        <p><strong>Description: </strong>{{ the_password.description }}</p>
-        <div style="margin-left:20px; margin-top:20px">
-            <form action="/tiny/pass/{{ id }}/edit">
-                <input type="submit" value="Update" />
-            </form>
-            <form action="/tiny/pass/{{ id }}/delete">
-                <input type="submit" value="Delete" />
-            </form>
+  <body>
+    {% extends "base_generic.html" %}
+    {% block content %}
+        <h1 style="margin-left: 300px;">  Detail : {{ the_password.title }}</h1>
+    
+        <div style="margin-left:20px; margin-top:20px ;margin-left: 350px;">
+            <div class="detail">
+                <p><strong>Username: </strong>{{ the_password.username }}</p>
+                <p><strong>Password: </strong>{{ the_password.password }}</p>
+                <p><strong>Description: </strong>{{ the_password.description }}</p>
+             
+                <form action="{{ id }}/edit/">
+                    <input class="update" type="submit" value="Update">
+                </form>
+                <form action="{{ id }}/delete/">
+                  <input class="delete" type="submit" value="Delete">
+                </form>
+            </div>
         </div>
-    </div>
-{% endblock %}
+    {% endblock %}
+  </body>        
+</html>

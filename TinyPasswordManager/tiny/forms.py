@@ -3,10 +3,10 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 class PasswordCreateForm(forms.Form):
-    title = forms.CharField(max_length=200)
-    description = forms.CharField(max_length=2000)
-    username = forms.CharField(max_length=32)
-    password = forms.CharField(max_length=32)
+    title = forms.CharField(max_length=200, required=True)
+    description = forms.CharField(max_length=2000, required=False)
+    username = forms.CharField(max_length=32, required=False)
+    password = forms.CharField(max_length=32, required=True)
 
     def clean_title(self):
         data = self.cleaned_data['title']

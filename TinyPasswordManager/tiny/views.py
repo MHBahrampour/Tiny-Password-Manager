@@ -8,16 +8,17 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import DeleteView
 
 @login_required
-def index(request):
-    """View function for home page of site."""
-    
+def index(request):    
     current_user = request.user
     username = current_user.get_username()
     
     context={
-        'wellcome': 'Wellcome "{}" .'.format(username),
+        'wellcome': "Wellcome '{}'".format(username),
     }
     return render(request, 'index.html', context=context)
+
+def about(request):
+    return render(request, 'about.html')
 
 from tiny.forms import PasswordCreateForm
 @login_required
@@ -34,7 +35,7 @@ def PasswordCreate(request):
         new_password.user = request.user.get_username()
 
         new_password.save()
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('pass_show'))
 
     context = {
         'form': form,
@@ -87,11 +88,12 @@ def PasswordEdit(request, pk):
         edit_password.title = form.cleaned_data["title"]
         edit_password.description = form.cleaned_data["description"]
         edit_password.password = form.cleaned_data["password"]
+        edit_password.username = form.cleaned_data["username"]
 
         edit_password.user = request.user.get_username()
 
         edit_password.save()
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('pass_show'))
 
     context = {
         'form': form,

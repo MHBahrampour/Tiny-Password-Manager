@@ -1,13 +1,61 @@
-{% extends "base_generic.html" %}
+<!DOCTYPE html>
+<html>
 
-{% block content %}
-  <h1>Create a new password</h1>
+<head>
+
+     <style>
+           h1{ margin-left: 270px;}
+
+           form{  margin-left: 300px;
+                  background-color: #333;
+                  color: white;
+                  width: 30%;
+                  text-align: center;
+                  border-radius: 15px;}
+
+               .submit{ width: 75%;
+                        color: black;
+                        font-weight: 500;
+                        font-size: 15px;
+                        letter-spacing: 5px;
+                         background: linear-gradient(to right, rgb(57, 170, 136), rgb(82, 127, 185));
+                         padding: 10px 20px;
+                         border-radius: 50px;
+                          box-sizing: border-box;
+                            border: 2px solid rgba(0, 0, 0, 0.02);
+                           margin-bottom: 50px;
+                          margin-left: 60px;
+                           text-align: center;
+                           margin-bottom: 27px;
+                            margin-left: 15px;
+                     
+                   }      
+
     
-  <form action="" method="post">
-    {% csrf_token %}
-    <table>
-    {{ form.as_table }}
-    </table>
-    <input type="submit" value="Submit">
-  </form>
-{% endblock %}
+
+        
+     </style>
+</head>
+
+  <body>
+       
+          {% extends "base_generic.html" %}
+        
+            {% block content %}
+             <h1>Create a new password</h1>
+           
+            <form action="" method="post">
+              {% csrf_token %}
+              <table>
+             {{ form.as_table }}
+             </table>
+             <input class="submit" type="submit" value="ok">
+             </form>
+          
+            {% endblock %}
+
+        
+          
+   
+  </body>
+</html>

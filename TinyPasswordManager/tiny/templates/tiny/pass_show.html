@@ -1,11 +1,30 @@
-{% extends "base_generic.html" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            p a:hover { 
+                background: linear-gradient(to right, rgb(57, 170, 136), rgb(82, 127, 185));
+                text-decoration: none;
+                color: white;
+                border-radius: 15px;}    
+        </style>
+    </head>
 
-{% block content %}
-    <h1>My Passwords</h1>
+<body>
 
-    <div style="margin-left:20px;margin-top:20px">
-        {% for pass in user_passwords %}
-        <p>Password Title: <a href="{{ pass.get_absolute_url }}">{{ pass.title }}</a></p>
-        {% endfor %}
-    </div>
-{% endblock %}
+    {% extends "base_generic.html" %}
+
+
+    {% block content %}
+        <h1 style="margin-left: 300px;">My Passwords</h1>
+        <hr>
+
+        <div style="margin-left:20px;margin-top:20px">
+            {% for pass in user_passwords %}
+            <p style="margin-left: 300px; color:black;">Password Title: <a style="color: white;" href="{{ pass.get_absolute_url }}">{{ pass.title }}</a></p>
+            {% endfor %}
+        </div>
+    {% endblock %}
+     
+</body>
+</html>

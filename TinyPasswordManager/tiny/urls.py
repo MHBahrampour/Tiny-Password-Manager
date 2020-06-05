@@ -5,6 +5,9 @@ urlpatterns = [
     # home page
     path('', views.index, name='index'),
 
+    # home page
+    path('about', views.about, name='about'),
+
     # create new password
     path('pass/create/', views.PasswordCreate, name='pass_create'),
 

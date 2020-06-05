@@ -1,38 +1,95 @@
-{% extends "base_generic.html" %}
+<!DOCTYPE html>
 
-{% block content %}
+<html lang="en">
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-  
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+
+<style>
+
+    .login{
+        color: white;
+        border-radius: 15px;
+        width: 25%;
+        background-color:#333;
+        
+        margin-left: 300px;
+        margin-top: 30px;
+    }   
+
+    .log {
+        width: 75%;
+        color: rgb(69, 81, 87);
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 5px;
+        background: linear-gradient(to right, rgb(57, 170, 136), rgb(82, 127, 185));
+        padding: 10px 20px;
+        border-radius: 50px;
+        box-sizing: border-box;
+        border: 2px solid rgba(0, 0, 0, 0.02);
+        margin-bottom: 50px;
+        margin-left: 40px;
+        text-align: center;
+        margin-bottom: 27px;
+    }
+
+    p a:hover{ text-decoration: none;
+               color:white;}
+
+</style>
+
+<body>
+
+    {% extends "base_generic.html" %}
+
+    {% block content %}
+
+    {% if form.errors %}
+        <p style="margin-left: 250px ;color: tomato;">Your username and password didn't match. Please try again.</p>
     {% endif %}
-  {% endif %}
   
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
+    {% if next %}
+
+        {% if user.is_authenticated %}
+            <p style="margin-left: 250px ;color: tomato;">
+            Your account doesn't have access to this page. 
+            To proceed, please login with an account that has access.
+            </p>
+
+        {% else %}
+            <div class="login "> 
+                <p style="text-align: center;">LOGIN</p>
+        {% endif %}
+
+    {% endif %}
+   
+     
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+          </tr>
+          </table>
+      
+          <input class="log " type="submit" value="login" />
+          <input class="pass " type="hidden" name="next" value="{{ next }}" />
+     </form>  
+
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <p style="text-align: center;"><a href="{% url 'password_reset' %}">Lost password?</a></p>
+    <p style="text-align: center;"><a href="{% url 'signup' %}">Create account?</a></p>
   
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-  <p><a href="{% url 'signup' %}">Create account?</a></p>
-  
-{% endblock %}
+    {% endblock %}
+    </div>
+
+</body>
+</html>
